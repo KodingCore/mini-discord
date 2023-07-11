@@ -13,7 +13,7 @@ class UserManager extends AbstractManager {
             $user['email'],
             $user['password']
          );
-         $userInstance->setId($user['id'];)
+         $userInstance->setId($user['id']);
 			array_push($usersTab,$user);
 		}
 		return $usersTab;
