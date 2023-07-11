@@ -29,9 +29,25 @@ class UserManager extends AbstractManager {
          $user['email'],
          $user['password']
       );
+      $userInstance->setId($user['id']);
       return $userInstance;
 	}
-   public function insertUser(User $user) : void {
+   public function getUserByEmail(string $email) : User {
+		$query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
+		$parameters = [
+			'email' => $email
+		];
+		$query->execute($parameters);
+		$user = $query->fetch(PDO::FETCH_ASSOC);
+		$userInstance = new User(
+         $user['username'],
+         $user['email'],
+         $user['password']
+      );
+      $userInstance->setId($user['id']);
+      return $userInstance;
+	}
+   public function insertUser(User $user) : User {
       $query = $this->db->prepare('
 			INSERT INTO users (email, username, password)
 			VALUES (:email, :username, :password)
@@ -42,5 +58,37 @@ class UserManager extends AbstractManager {
 			'password' => password_hash($user->getPassword(),PASSWORD_DEFAULT)
 		];
 		$query->execute($parameters);
+
+      $user = $this->getUserByEmail($user->getEmail());
+      return $user;
+   }
+   public function editUser(User $user) : User {
+		$query = $this->db->prepare('
+			UPDATE users
+			SET email = :email,
+			username = :username,
+			password = :password
+			WHERE id = :id
+		');
+		$parameters = [
+			'email' => $user->getEmail(),
+			'username' => $user->getUsername(),
+			'password' => $user->getPassword(),
+			'id' => $user->getID()
+		];
+		$query->execute($parameters);
+
+		$user = $this->getUserByID($user->getID());
+		return $user;
+	}
+   public function deleteUser(User $user) : void {
+      $query = $this->db->prepare('
+         DELETE FROM users
+         WHERE users.id = :id
+      ');
+      $parameters = [
+         'id' => $user->getId()
+      ];
+      $query->execute($parameters);
    }
 }
