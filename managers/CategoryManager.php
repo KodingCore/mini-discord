@@ -12,8 +12,8 @@ class CategoryManager extends AbstractManager{ //PARLE A LA BDD
         $categoriesTab = [];
         foreach($categories as $category)
         {
-            $oneCategory = new Room($category["name"]);
-            array_push($categoriesTab, $oneCategory);
+            $categoryInstance = new Room($category["name"]);
+            array_push($categoriesTab, $categoryInstance);
         }
         return $categoriesTab;
     }
