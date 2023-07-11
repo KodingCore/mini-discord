@@ -13,7 +13,7 @@ abstract class AbstractModel
         return $this->id;
     }
 
-    public function setId(int $îd) : void
+    public function setId(int $id) : void
     {
         $this->id = $id;
     }
