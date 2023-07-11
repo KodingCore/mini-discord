@@ -39,9 +39,9 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
     function removeRoom(Room $room) : void
     {
-        $query = $this->db->prepare('DELETE FROM rooms WHERE id = :id');
+        $query = $this->db->prepare('DELETE FROM rooms WHERE rooms.id = :id');
         $parameters = [
-            'id' => $room["id"]
+            'id' => $room->getId()
         ];
         $query->execute($parameters);
     }
