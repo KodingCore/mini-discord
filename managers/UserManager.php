@@ -74,11 +74,11 @@ class UserManager extends AbstractManager {
 			'email' => $user->getEmail(),
 			'username' => $user->getUsername(),
 			'password' => $user->getPassword(),
-			'id' => $user->getID()
+			'id' => $user->getId()
 		];
 		$query->execute($parameters);
 
-		$user = $this->getUserByID($user->getID());
+		$user = $this->getUserById($user->getId());
 		return $user;
 	}
    public function deleteUser(User $user) : void {
