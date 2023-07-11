@@ -3,9 +3,9 @@ abstract class AbstractModel
 {
     protected ?int $id;
 
-    public function __construct(?int $id = null)
+    public function __construct()
     {
-        $this->id = $id;
+        $this->id = null;
     }
 
     public function getId() : int
