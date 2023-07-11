@@ -10,7 +10,7 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         $roomsTab = [];
         foreach($rooms as $room)
         {
-            $roomInstance = new Room($room["name"]);
+            $roomInstance = new Room($room["name"], $room["category_id"]);
             array_push($roomsTab, $roomInstance);
         }
         return $roomsTab;
@@ -20,8 +20,8 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
     {
         $query = $this->db->prepare('SELECT * FROM rooms WHERE id = :id');
         $parameters = [
-            'id' => $id;
-            ]
+            'id' => $id
+            ];
         $query->execute();
         $room = $query->fetch(PDO::FETCH_ASSOC);
         return $room;
@@ -29,9 +29,10 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
     function addRoom(Room $room) : void
     {
-        $query = $this->db->prepare('INSERT INTO rooms(name) VALUES(:room)');
+        $query = $this->db->prepare('INSERT INTO rooms(name, category_id) VALUES(:name, :category_id)');
         $parameters = [
-            'room' => $room->getName()
+            'name' => $room->getName(),
+            'category_id' => $room->getCategory_id()
         ];
         $query->execute($parameters);
     }
