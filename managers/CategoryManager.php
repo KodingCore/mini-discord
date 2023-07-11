@@ -38,9 +38,9 @@ class CategoryManager extends AbstractManager{ //PARLE A LA BDD
 
     function editCategoryById(Category $category) : void
     {
-        $query = $this->db->prepare('REPLACE INTO categories(name) VALUES(:category) WHERE id = :id');
+        $query = $this->db->prepare('REPLACE INTO categories(name) VALUES(:name) WHERE id = :id');
         $parameters = [
-            'category' => $category->getName(),
+            'name' => $category->getName(),
             'id' => $category->getId()
         ];
         $query->execute($parameters);

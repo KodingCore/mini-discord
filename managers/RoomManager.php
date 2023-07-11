@@ -38,9 +38,9 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
     function editRoomById(room $room) : void
     {
-        $query = $this->db->prepare('REPLACE INTO rooms(name) VALUES(:room) WHERE id = :id');
+        $query = $this->db->prepare('REPLACE INTO rooms(name) VALUES(:name) WHERE id = :id');
         $parameters = [
-            'room' => $room->getName(),
+            'name' => $room->getName(),
             'id' => $room->getId()
         ];
         $query->execute($parameters);
