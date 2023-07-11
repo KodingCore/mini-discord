@@ -1,7 +1,5 @@
 <?php
 
-require 'AbstractManager.php';
-
 class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
     function getRooms() : array
@@ -17,6 +15,17 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         }
         return $roomsTab;
     }
+    
+    function getRoomById(int $id)
+    {
+        $query = $this->db->prepare('SELECT * FROM rooms WHERE id = :id');
+        $parameters = [
+            'id' => $id;
+            ]
+        $query->execute();
+        $room = $query->fetch(PDO::FETCH_ASSOC);
+        return $room;
+    }
 
     function addRoom(Room $room) : void
     {
@@ -27,16 +36,16 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         $query->execute($parameters);
     }
 
-    function removeRoomById(int $id) : void
+    function removeRoom(Room $room) : void
     {
         $query = $this->db->prepare('DELETE FROM rooms WHERE id = :id');
         $parameters = [
-            'id' => $id
+            'id' => $room["id"]
         ];
         $query->execute($parameters);
     }
 
-    function editRoomById(room $room) : void
+    function editRoom(Room $room) : void
     {
         $query = $this->db->prepare('REPLACE INTO rooms(name) VALUES(:name) WHERE id = :id');
         $parameters = [
