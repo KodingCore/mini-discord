@@ -1,15 +1,20 @@
 <?php
  
- class Category extends AbstactModel {
+ class Category extends AbstractModel {
      
-     private string $name;
+      private string $name;
      
-     function getName() : string
+      public function __construct(string $name) {
+          $this->name=$name;
+          
+      }
+     
+      public function  getName() : string
      {
-         return $this ->name;
+         return $this->name;
      }
      
-     function setName(string $name)
+      public function  setName(string $name)
      {
          return $this->name=$name;
      }
