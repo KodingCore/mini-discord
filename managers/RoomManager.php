@@ -4,12 +4,18 @@ require 'AbstractManager.php';
 
 class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
-    function listAllRooms() : array
+    function getRooms() : array
     {
         $query = $this->db->prepare('SELECT * FROM rooms');
         $query->execute();
         $rooms = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $rooms;
+        $roomsTab = [];
+        foreach($rooms as $room)
+        {
+            $roomInstance = new Room($room["name"]);
+            array_push($roomsTab, $roomInstance);
+        }
+        return $roomsTab;
     }
 
     function addRoom(Room $room) : void
@@ -21,7 +27,7 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         $query->execute($parameters);
     }
 
-    function removeroomById(int $id) : void
+    function removeRoomById(int $id) : void
     {
         $query = $this->db->prepare('DELETE FROM rooms WHERE id = :id');
         $parameters = [
@@ -30,11 +36,11 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         $query->execute($parameters);
     }
 
-    function editroomById(room $room) : void
+    function editRoomById(room $room) : void
     {
-        $query = $this->db->prepare('REPLACE INTO rooms(name) VALUES(:room) WHERE id = :id');
+        $query = $this->db->prepare('REPLACE INTO rooms(name) VALUES(:name) WHERE id = :id');
         $parameters = [
-            'room' => $room->getName(),
+            'name' => $room->getName(),
             'id' => $room->getId()
         ];
         $query->execute($parameters);

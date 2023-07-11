@@ -4,12 +4,18 @@ require 'AbstractManager.php';
 
 class CategoryManager extends AbstractManager{ //PARLE A LA BDD
 
-    function listAllCategories() : array
+    function getCategories() : array
     {
         $query = $this->db->prepare('SELECT * FROM categories');
         $query->execute();
         $categories = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $categories;
+        $categoriesTab = [];
+        foreach($categories as $category)
+        {
+            $categoryInstance = new Room($category["name"]);
+            array_push($categoriesTab, $categoryInstance);
+        }
+        return $categoriesTab;
     }
 
     function addCategory(Category $category) : void
@@ -32,9 +38,9 @@ class CategoryManager extends AbstractManager{ //PARLE A LA BDD
 
     function editCategoryById(Category $category) : void
     {
-        $query = $this->db->prepare('REPLACE INTO categories(name) VALUES(:category) WHERE id = :id');
+        $query = $this->db->prepare('REPLACE INTO categories(name) VALUES(:name) WHERE id = :id');
         $parameters = [
-            'category' => $category->getName(),
+            'name' => $category->getName(),
             'id' => $category->getId()
         ];
         $query->execute($parameters);
