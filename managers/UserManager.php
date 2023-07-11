@@ -6,16 +6,16 @@ class UserManager extends AbstractManager {
       $query = $this->db->prepare('SELECT * FROM users');
       $query->execute();
       $users = $query->fetchAll(PDO::FETCH_ASSOC);
-      $users = [];
+      $usersArray = [];
 		foreach($users as $user) {
          $userInstance = new User(
             $user['username'],
             $user['email'],
             $user['password']
          );
-			array_push($users,$user);
+			array_push($usersArray,$user);
 		}
-		return $users;
+		return $usersArray;
    }
    public function getUserById(int $id) : User {
 		$query = $this->db->prepare('SELECT * FROM users WHERE id = :id');
