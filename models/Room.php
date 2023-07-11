@@ -3,12 +3,17 @@ class Room extends AbstractModel
 {
     private string $name;
 
-    function getName() : string
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName() : string
     {
         return $this->name;
     }
 
-    function setName(string $name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
