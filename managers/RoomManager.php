@@ -48,9 +48,10 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
     function editRoom(Room $room) : void
     {
-        $query = $this->db->prepare('REPLACE INTO rooms(name) VALUES(:name) WHERE id = :id');
+        $query = $this->db->prepare('UPDATE rooms SET name = :name, category_id = :category_id WHERE id = :id');
         $parameters = [
             'name' => $room->getName(),
+            'category_id' => $room->getCategory_id(),
             'id' => $room->getId()
         ];
         $query->execute($parameters);
