@@ -5,17 +5,44 @@
  class MessageManager extends AbstractManager{
      
      
-     function addMessage(Message $message) :void 
+     function addMessage(Message $message) : void
      {
-         $query =$this->db->prepare('INSERT INTO messages(content) VALUES(:content)');
+         $query =$this->db->prepare('INSERT INTO messages(content,user_id,room_id) VALUES(:content,:user_id,:room_id)');
          $parameters=[
-             'content' => $content,
-             
+             'content' => $content->getContent(),
+             'user_id' => $user_id->getUser_id(),
+             'room_id' => $room_id->getRoom_id()
         ];
-         $query->excute($parameters);
+         $query->execute($parameters);
      }
      
-     function 
+     public function editMessage(Message $message) :void {
+      
+      $query = $this->db->prepare('
+         UPDATE message
+         SET content = :content,
+         WHERE id = :id
+      
+      ');
+      
+      $parameters = [
+       
+       'content' => $content->getContent(),
+       'id' => $user->getId()
+		];
+		    $query->execute($parameters);
+		    
+    }
+    public function deleteMessage(Message $message) : void {
+      $query = $this->db->prepare('
+         DELETE FROM messages
+         WHERE messages.id = :id
+      ');
+      $parameters = [
+         'id' => $message->getId()
+      ];
+      $query->execute($parameters);
+   }
      
  }
 
