@@ -4,7 +4,7 @@ require 'AbstractManager.php';
 
 class CategoryManager extends AbstractManager{ //PARLE A LA BDD
 
-    function listAllCategories() : array
+    function getCategories() : array
     {
         $query = $this->db->prepare('SELECT * FROM categories');
         $query->execute();
