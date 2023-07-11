@@ -9,7 +9,13 @@ class CategoryManager extends AbstractManager{ //PARLE A LA BDD
         $query = $this->db->prepare('SELECT * FROM categories');
         $query->execute();
         $categories = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $categories;
+        $categoriesTab = [];
+        foreach($categories as $category)
+        {
+            $oneCategory = new Room($category["name"]);
+            array_push($categoriesTab, $oneCategory);
+        }
+        return $categoriesTab;
     }
 
     function addCategory(Category $category) : void
