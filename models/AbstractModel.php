@@ -8,7 +8,7 @@ abstract class AbstractModel
         $this->id = null;
     }
 
-    public function getId() : int
+    public function getId() : ?int
     {
         return $this->id;
     }

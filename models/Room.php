@@ -1,12 +1,11 @@
 <?php
-
-require 'AbbstractModel.php';
 class Room extends AbstractModel
 {
     private string $name;
 
     public function __construct(string $name)
     {
+        AbstractModel::__construct();
         $this->name = $name;
     }
 

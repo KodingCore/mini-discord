@@ -1,13 +1,12 @@
 <?php
 
-require 'AbstractModel.php';
-
 class Message extends AbstractModel
 {
     private string $content;
 
     public function __construct(string $content)
     {
+        AbstractModel::__construct();
         $this->content = $content;
     }
 
