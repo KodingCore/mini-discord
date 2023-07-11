@@ -1,4 +1,6 @@
 <?php
+
+require 'AbbstractModel';
 class Room extends AbstractModel
 {
     private string $name;
