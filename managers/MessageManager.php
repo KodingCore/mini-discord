@@ -9,7 +9,7 @@
      {
          $query =$this->db->prepare('INSERT INTO messages(content,user_id,room_id) VALUES(:content,:user_id,:room_id)');
          $parameters=[
-             'content' => $content->getContent(),
+             'content' => $message->getContent(),
              'user_id' => $user_id->getUser_id(),
              'room_id' => $room_id->getRoom_id()
         ];
@@ -27,8 +27,8 @@
       
       $parameters = [
        
-       'content' => $content->getContent(),
-       'id' => $user->getId()
+       'content' => $message->getContent(),
+       'id' => $message->getId()
 		];
 		    $query->execute($parameters);
 		    
