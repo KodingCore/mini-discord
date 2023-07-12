@@ -1,8 +1,5 @@
 <?php
 
-require 'manager/CategoryManager.php';
-require 'manager/RoomManager.php';
-
 class CategoriesController extends AbstractController
 {
     private CategoryManager $categoryManager;

@@ -1,7 +1,5 @@
 <?php
 
-require 'managers/UserManager.php';
-
 class UserController extends AbstractController
 {
     private UserManager $userManager;

@@ -1,7 +1,5 @@
 <?php
 
-require 'managers/MessageManager.php';
-
 class ChatController extends AbstractController
 {
     private MessageManager $messageManager;
