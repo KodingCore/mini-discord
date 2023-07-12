@@ -25,7 +25,10 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
             ];
         $query->execute();
         $room = $query->fetch(PDO::FETCH_ASSOC);
-        return $room;
+        $roomInstance = new Room($room ['name'],$room['category_id']);
+        $roomInstance->setId($room['id']);  
+        return $roomInstance;
+    
     }
     
     

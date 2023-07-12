@@ -28,6 +28,20 @@ class CategoryManager extends AbstractManager{ //PARLE A LA BDD
         $query->execute($parameters);
     }
 
+
+     function getCategoryById(int $id) : Category
+    {
+        $query = $this->db->prepare('SELECT * FROM categories WHERE id = :id');
+        $parameters = [
+            'id' => $id
+            ];
+        $query->execute();
+        $category = $query->fetch(PDO::FETCH_ASSOC);
+        $categoryInstance = new Category($category['name']);
+        $categoryInstance->setId($category['id']); 
+        return $categoryInstance;
+    }
+    
     function removeCategoryById(int $id) : void
     {
         $query = $this->db->prepare('DELETE FROM categories WHERE id = :id');
