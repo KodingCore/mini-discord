@@ -1,0 +1,20 @@
+<nav>
+   <ul>     
+      <?php foreach($data['categories'] as $cat) { ?>
+         <li>
+            <?= $cat->getContent ?>
+            <form action="index.php?route='chat'" method="GET">
+               <input type="hidden" name="category" value="<?= $cat->getId(); ?>">
+               <select name="room" id="room">
+                  <?php foreach($data['rooms'] as $room) {
+                     if ($room->getCategory_id() === $cat->getId()) { ?>
+                        <option value="<?= $room->getId(); ?>"><?= $room->getName(); ?></option>
+                  <?php }
+                  } ?>
+               </select>
+               <button>Submit</button> <!--- probablement hidden -->
+            </form>
+         </li>
+      <?php } ?>
+   </ul>
+</nav>
