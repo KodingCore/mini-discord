@@ -8,7 +8,21 @@
 </head>
 
 <body>
-
+   <?php if (isset($_SESSION["user_id"])) { ?>
+      <header>
+         <div>
+            <a href="">Categories</a>
+         </div>
+         <div>
+            <div><!-- truc à cliquer jspkoi --></div>
+            <nav>
+               <ul>
+                  <li><a href="index.php?route=user-logout">Log out</a></li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+   <?php } ?>
    <main>
       require $template
    </main>
