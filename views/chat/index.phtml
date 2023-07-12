@@ -1,25 +1,39 @@
+<?php $userManager = new UserManager($db); ?>
+
 <header>
    <h1><?= $room->getName(); ?></h1>
 </header>
 <main>
-   <section aria-labelledby="srt-feed">
-      <h2 class="visually-hidden" id="srt-feed">Feed</h2>
-      <div role="feed">
-
-      </div>
-   </section>
-   <section>
-      <form action="" method="POST">
-         <input type="hidden" name="room" value="<?= $room->getId(); ?>">
-         <label for="messageContent" class="visually-hidden">Message <?= $room->getName ?></label>
-         <div class="">
-            <input type="text" name="content" id="messageContent" placeholder="Message <?= $room->getName ?>">
-            <button aria-label="Send message">
-
-            </button>
+   <div class="chat-container">
+      <section aria-labelledby="srt-feed">
+         <h2 class="visually-hidden" id="srt-feed">Feed</h2>
+         <div role="feed">
+            <?php foreach ($data['messages'] as $msg) { ?>
+               <article>
+                  <header>
+                     <h3><?= $userManager->getUserById($msg['user_id'])->getUsername(); ?></h3>
+                     <div><?php
+                           $msg['creation_date'];
+                           ?></div>
+                  </header>
+                  <p class="message-content">
+                     <?php $msg['content'] ?>
+                  </p>
+               </article>
+            <?php } ?>
          </div>
+      </section>
+      <section>
+         <form action="" method="POST">
+            <input type="hidden" name="room" value="<?= $data['room']->getId(); ?>">
+            <label for="messageContent" class="visually-hidden">Message <?= $data['room']->getName ?></label>
+            <div class="message-input-wrapper">
+               <input type="text" name="content" id="messageContent" placeholder="Message <?= $data['room']->getName ?>">
+               <button aria-label="Send message">
 
-      </form>
-   </section>
-
+               </button>
+            </div>
+         </form>
+      </section>
+   </div>
 </main>
