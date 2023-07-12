@@ -8,6 +8,7 @@ class UserController extends AbstractController
     
     public function __construct()
     {
+        global $db;
         $this->userManager = new UserManager($db);
     }
     
@@ -15,25 +16,25 @@ class UserController extends AbstractController
     {
         if(isset($_POST["email"], $_POST["password"]))
         {
-            $userLog = userManager->getUserByEmail($_POST["email"]);
-            if(password_verify($_POST["password"], $userLog["password"])
+            $user = $this->userManager->getUserByEmail($_POST["email"]);
+            if(password_verify($_POST["password"], $user->getPassword()))
             {
-                $this->render('categories/index.phtml', "user" => $userLog);
+                $this->render('categories/index.phtml', ["user" => $user]);
             }
             else
             {
                 $allUsers = $this->userManager->getAllUsers();
-                $this->render('user/login.phtml', "users" => $allUsers);
+                $this->render('user/login.phtml', ["users" => $allUsers]);
             }
         }else{
             $allUsers = $this->userManager->getAllUsers();
-            $this->render('user/login.phtml', "users" => $allUsers);
+            $this->render('user/login.phtml', ["users" => $allUsers]);
         }
     }
     
     public function register()
     {
-        if(isset($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirm-password'])
+        if(isset($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirm-password']))
         {
             if($_POST['password'] === $_POST['confirm-password'])
             {
@@ -41,7 +42,7 @@ class UserController extends AbstractController
                 $user = new User($_POST['email'], $_POST['username'], $hash);
                 $this->userManager->insertUser($user);
                 $allUsers = $this->userManager->getAllUsers();
-                $this->render('user/login.phtml', "users" => $allUsers);
+                $this->render('user/login.phtml', ["users" => $allUsers]);
             }else{
                 $this->render('user/register.phtml', []);
             }
