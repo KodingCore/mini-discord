@@ -5,19 +5,25 @@ require 'managers/MessageManager.php';
 class ChatController extends AbstractController
 {
     private MessageManager $messageManager;
+    private RoomManager $roomManager;
+    private CategoryManager $categoryManager;
     
     public function __construct()
     {
         global $db;
         $this->messageManager = new MessageManager($db);
+        $this->roomManager = new RoomManager($db);
+        $this->categoryManager = new CategoryManager($db);
     }
     
     function index() : void
     {
-        $room = $_GET['room'];
-        $category = $_GET['category'];
+        $room_id = (int) $_GET['room_id'];
+        $category_id = (int) $_GET['category_id'];
+        $room = $this->roomManager->getRoomById($room_id);
+        $category = $this->categoryManager->getCategoryById($category_id);
         
-        $messages = $this->messageManager->getAllMessagesByRoomId($room);
+        $messages = $this->messageManager->getAllMessagesByRoomId($room_id);
         
         $this->render("chat/index.phtml", [
             "messages" => $messages,

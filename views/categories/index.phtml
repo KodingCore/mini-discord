@@ -2,10 +2,10 @@
    <ul>     
       <?php foreach($data['categories'] as $cat) { ?>
          <li>
-            <?= $cat->getContent ?>
-            <form action="index.php?route='chat'" method="GET">
-               <input type="hidden" name="category" value="<?= $cat->getId(); ?>">
-               <select name="room" id="room">
+            <?= $cat->getName(); ?>
+            <form action="index.php?route=categories-selectroom" method="GET">
+               <input type="hidden" name="category_id" value="<?= $cat->getId(); ?>">
+               <select name="room_id" id="room">
                   <?php foreach($data['rooms'] as $room) {
                      if ($room->getCategory_id() === $cat->getId()) { ?>
                         <option value="<?= $room->getId(); ?>"><?= $room->getName(); ?></option>
