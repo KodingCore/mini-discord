@@ -1,7 +1,5 @@
 <?php
 
-require 'AbstractManager.php';
-
 class CategoryManager extends AbstractManager{ //PARLE A LA BDD
 
     function getAllCategories() : array

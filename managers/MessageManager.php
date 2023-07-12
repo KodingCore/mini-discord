@@ -1,8 +1,5 @@
 <?php
 
-require 'AbstractManager.php';
-require '../models/Message.php';
-
 class MessageManager extends AbstractManager
 {
    
