@@ -1,29 +1,33 @@
 <?php
-
 function checkRoute(string $route) : void
 {
     if($route === "categories")
     {
-        
+        CategoriesController->index();
     }
-    else if($route === "room")
+    elseif($route === "chat")
     {
-        
+        if(isset($_GET["category"], $_GET["room"]))
+        {
+            ChatController->index();
+        }else{
+            HomeController->index();
+        }
     }
-    else if($route === "user-register")
+    elseif($route === "user-register")
     {
-        
+        UserController->resister();
     }
-    else if($route === "user-login")
+    elseif($route === "user-login")
     {
-        
+        UserController->login();
     }
-    else if($route === "user-account")
+    elseif($route === "user-account")
     {
-        
+        UserController->account();
     }
-    else if($route === "")
+    elseif($route === "")
     {
-        
+        HomeController->index();
     }
 }
