@@ -8,7 +8,7 @@ class ChatController extends AbstractController
     
     public function __construct()
     {
-        $this->messageManager = new MessageManager();
+        $this->messageManager = new MessageManager($db);
     }
     
     function index()
