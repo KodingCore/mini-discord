@@ -1,15 +1,14 @@
 <?php
 
-
-    require_once 'models/Category.php';
+require 'manager/CategoryManager.php';
+require 'manager/RoomManager.php';
     
 class CategoriesController extends AbstractController
 {
       private CategoryManager $categoryManager;
       private RoomManager $roomManager;
      
-    
-      public function __construct()
+    public function __construct()
     {
        $this->categoryManager = new CategoryManager($db);
        $this->roomManager = new RoomManager($db);
