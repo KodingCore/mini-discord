@@ -1,10 +1,27 @@
 <?php
 
 require 'AbstractManager.php';
+require '../models/Message.php';
 
 class MessageManager extends AbstractManager
 {
-
+   
+   function getAllMessagesByRoomId(int $room_id) : array
+   {
+      $query = $this->db->prepare('SELECT * FROM messages WHERE room_id = :room_id');
+      $parameters = [
+            'room_id' => $room_id
+         ];
+      $query->execute($parameters);
+      $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+      $messagesTab = [];
+      foreach($messages as $message)
+      {
+         $instanceMessage = new Messsage($message["content"], $message["creation_date"], $message["user_id"], $message["room_id"]);
+         array_push($messagesTab, $instanceMessage);
+      }
+      return $messagesTab;
+   }
 
    function addMessage(Message $message): void
    {
