@@ -17,7 +17,7 @@ class MessageManager extends AbstractManager
       $messagesTab = [];
       foreach($messages as $message)
       {
-         $instanceMessage = new Messsage($message["content"], $message["creation_date"], $message["user_id"], $message["room_id"]);
+         $instanceMessage = new Message($message["content"], $message["creation_date"], $message["user_id"], $message["room_id"]);
          array_push($messagesTab, $instanceMessage);
       }
       return $messagesTab;
