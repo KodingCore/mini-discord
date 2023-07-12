@@ -16,7 +16,7 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         return $roomsTab;
     }
     
-    function getRoomById(int $id)
+    function getRoomById(int $id) : Room
     {
         $query = $this->db->prepare('SELECT * FROM rooms WHERE id = :id');
         $parameters = [
@@ -26,6 +26,27 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         $room = $query->fetch(PDO::FETCH_ASSOC);
         return $room;
     }
+    
+    
+     function getRoomsByCategoryId(int $category_id) : array
+    {
+    $query = $this->db->prepare('SELECT * FROM rooms WHERE category_id = :category_id');
+    $parameters = [
+        'category_id' => $category
+    ];
+    $query->execute($parameters);
+    $rooms = $query->fetchAll(PDO::FETCH_ASSOC);
+    $roomsTab = [];
+    foreach($rooms as $room) {
+        $roomInstance = new Room($room['name'],$room['category_id']);
+        $roomInstance->setId($room['id']);
+        array_push($roomsTab,$roomInstance);
+    }
+    return $roomsTab;
+    }
+
+    
+    
 
     function addRoom(Room $room) : void
     {
