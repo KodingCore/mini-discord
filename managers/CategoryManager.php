@@ -4,7 +4,7 @@ require 'AbstractManager.php';
 
 class CategoryManager extends AbstractManager{ //PARLE A LA BDD
 
-    function getCategories() : array
+    function getAllCategories() : array
     {
         $query = $this->db->prepare('SELECT * FROM categories');
         $query->execute();
@@ -13,6 +13,7 @@ class CategoryManager extends AbstractManager{ //PARLE A LA BDD
         foreach($categories as $category)
         {
             $categoryInstance = new Category($category["name"]);
+            $categoryInstance->setId($category["id"]);
             array_push($categoriesTab, $categoryInstance);
         }
         return $categoriesTab;

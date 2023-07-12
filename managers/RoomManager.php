@@ -2,7 +2,7 @@
 
 class RoomManager extends AbstractManager{ //PARLE A LA BDD
 
-    function getRooms() : array
+    function getAllRooms() : array
     {
         $query = $this->db->prepare('SELECT * FROM rooms');
         $query->execute();
@@ -11,6 +11,7 @@ class RoomManager extends AbstractManager{ //PARLE A LA BDD
         foreach($rooms as $room)
         {
             $roomInstance = new Room($room["name"], $room["category_id"]);
+            $roomInstance->setId($room['id']);
             array_push($roomsTab, $roomInstance);
         }
         return $roomsTab;
