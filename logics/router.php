@@ -1,6 +1,8 @@
 <?php
 function checkRoute(string $route) : void
 {
+    require 'logics/database.php';
+    
     if($route === "categories")
     {
         CategoriesController->index();
@@ -13,6 +15,10 @@ function checkRoute(string $route) : void
         }else{
             HomeController->index();
         }
+    }
+    elseif($route === "chat-sendmessage")
+    {
+        ChatController->sendMessage();
     }
     elseif($route === "user-register")
     {
