@@ -2,18 +2,19 @@
 
 require 'manager/CategoryManager.php';
 require 'manager/RoomManager.php';
-    
+
 class CategoriesController extends AbstractController
 {
-      private CategoryManager $categoryManager;
-      private RoomManager $roomManager;
-     
+    private CategoryManager $categoryManager;
+    private RoomManager $roomManager;
+
     public function __construct()
     {
-       $this->categoryManager = new CategoryManager($db);
-       $this->roomManager = new RoomManager($db);
+        global $db;
+        $this->categoryManager = new CategoryManager($db);
+        $this->roomManager = new RoomManager($db);
     }
-    
+
     public function index()
     {
         $allCategories = $this->categoryManager->getAllCategories();
