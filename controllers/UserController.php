@@ -3,11 +3,13 @@
 class UserController extends AbstractController
 {
     private UserManager $userManager;
+    private CategoryManager $categoryManager;
     
     public function __construct()
     {
         global $db;
         $this->userManager = new UserManager($db);
+        $this->categoryManager = new CategoryManager($db);
     }
     
     public function login()
@@ -17,7 +19,9 @@ class UserController extends AbstractController
             $user = $this->userManager->getUserByEmail($_POST["email"]);
             if(password_verify($_POST["password"], $user->getPassword()))
             {
-                $this->render('categories/index.phtml', ["user" => $user]);
+                $_SESSION['user_id'] = $user->getId();
+                $categories = $categoryManager->getAllCategories();
+                $this->render('categories/index.phtml',['categories' => $categories]);
             }
             else
             {
@@ -36,8 +40,10 @@ class UserController extends AbstractController
         {
             if($_POST['password'] === $_POST['confirm-password'])
             {
-                $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                $user = new User($_POST['email'], $_POST['username'], $hash);
+                $pwd = $_POST['password'];
+                $email = $_POST['email'];
+                $username = $_POST['username'];
+                $user = new User($username, $email, $pwd);
                 $this->userManager->insertUser($user);
                 $allUsers = $this->userManager->getAllUsers();
                 $this->render('user/login.phtml', ["users" => $allUsers]);

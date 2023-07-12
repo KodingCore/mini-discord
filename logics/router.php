@@ -1,39 +1,48 @@
 <?php
 function checkRoute(string $route) : void
 {
-    require 'logics/database.php';
+    global $homeController;
+    global $userController;
+    global $chatController;
+    global $categoriesController;
     
     if($route === "categories")
     {
-        CategoriesController->index();
+        $categoriesController->index();
+    }
+    elseif($route === "categories-selectroom")
+    {
+        $categoriesController->selectRoom();
     }
     elseif($route === "chat")
     {
-        if(isset($_GET["category"], $_GET["room"]))
+        if(isset($_GET["category_id"], $_GET["room_id"]))
         {
-            ChatController->index();
-        }else{
-            HomeController->index();
+            $chatController->index();
+        }
+        else
+        {
+            $homeController->index();
         }
     }
     elseif($route === "chat-sendmessage")
     {
-        ChatController->sendMessage();
+        $chatController->sendMessage();
     }
     elseif($route === "user-register")
     {
-        UserController->resister();
+        $userController->register();
     }
     elseif($route === "user-login")
     {
-        UserController->login();
+        $userController->login();
     }
     elseif($route === "user-account")
     {
-        UserController->account();
+        $userController->account();
     }
     elseif($route === "")
     {
-        HomeController->index();
+        $homeController->index();
     }
 }

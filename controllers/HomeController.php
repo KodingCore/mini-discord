@@ -6,7 +6,8 @@ class HomeController extends AbstractController
     {
         if(isset($_SESSION["user_id"]))
         {
-            $this->render('categories/index.phtml', []);
+            header('Location: index.php?route=categories'); 
+            exit();
         }
         else
         {
