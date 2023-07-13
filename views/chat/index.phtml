@@ -13,13 +13,13 @@ $userManager = new UserManager($db);
          <?php foreach ($data['messages'] as $msg) { ?>
             <article>
                <header>
-                  <h3><?= $userManager->getUserById($msg['user_id'])->getUsername(); ?></h3>
+                  <h3><?= $userManager->getUserById($msg->getUser_id())->getUsername(); ?></h3>
                   <div><?php
-                        $msg['creation_date'];
+                        echo $msg->getCreation_date();
                         ?></div>
                </header>
                <p class="message-content">
-                  <?php $msg['content'] ?>
+                  <?= $msg->getContent(); ?>
                </p>
             </article>
          <?php } ?>

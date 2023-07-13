@@ -35,7 +35,7 @@ class ChatController extends AbstractController
         if(!empty($_POST['content']))
         {
             date_default_timezone_set('Europe/Paris');
-            $creation_date = date('m/d/Y h:i:s a', time());
+            $creation_date = date("Y-m-d H:i:s", time());
             $content = $_POST['content'];
             $user_id = $_SESSION['user_id'];
             $room_id = $_POST['room_id'];
@@ -45,8 +45,8 @@ class ChatController extends AbstractController
             
             $this->messageManager->addMessage($message);
             
-            // header("Location: /index.php?route=chat&category_id=$category_id&room_id=$room_id");
-            // exit();
+            header("Location: /index.php?route=chat&category_id=$category_id&room_id=$room_id");
+            exit();
         }
         
     }
