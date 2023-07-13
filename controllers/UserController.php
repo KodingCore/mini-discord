@@ -20,7 +20,7 @@ class UserController extends AbstractController
             if(password_verify($_POST["password"], $user->getPassword()))
             {
                 $_SESSION['user_id'] = $user->getId();
-                $categories = $categoryManager->getAllCategories();
+                $categories = $this->categoryManager->getAllCategories();
                 $this->render('categories/index.phtml',['categories' => $categories]);
             }
             else
