@@ -23,7 +23,7 @@ class RoomManager extends AbstractManager
         $parameters = [
             'id' => $id
         ];
-        $query->execute();
+        $query->execute($parameters);
         $room = $query->fetch(PDO::FETCH_ASSOC);
         $roomInstance = new Room($room['name'], $room['category_id']);
         $roomInstance->setId($room['id']);

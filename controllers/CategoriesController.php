@@ -23,8 +23,8 @@ class CategoriesController extends AbstractController
     
     public function selectRoom() : void
     {
-        $room_id = $_GET['room_id'];
-        $category_id = $_GET['category_id'];
+        $room_id = (int) $_GET['room_id'];
+        $category_id = (int) $_GET['category_id'];
         $room = $this->roomManager->getRoomById($room_id);
         $messages = $this->messageManager->getAllMessagesByRoomId($room_id);
         

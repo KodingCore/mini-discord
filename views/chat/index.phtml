@@ -1,7 +1,10 @@
-<?php $userManager = new UserManager($db); ?>
+<?php
+global $db;
+$userManager = new UserManager($db); 
+?>
 
 <div class="room-heading">
-   <h1><?= $room->getName(); ?></h1>
+   <h1><?= $data['room']->getName(); ?></h1>
 </div>
 <div class="room-chat">
    <section aria-labelledby="srt-feed">
@@ -29,7 +32,7 @@
          <div class="message-input-wrapper">
             <input type="text" name="content" id="messageContent" placeholder="Message <?= $data['room']->getName ?>">
             <button aria-label="Send message">
-
+               Envoyer
             </button>
          </div>
       </form>
