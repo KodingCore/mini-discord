@@ -1,6 +1,6 @@
 <?php
 global $db;
-$userManager = new UserManager($db); 
+$userManager = new UserManager($db);
 ?>
 
 <div class="room-heading">
@@ -27,10 +27,11 @@ $userManager = new UserManager($db);
    </section>
    <section>
       <form action="index.php?route=chat-sendmessage" method="POST">
+         <input type="hidden" name="category_id" value="<?= $data['category']->getId(); ?>">
          <input type="hidden" name="room_id" value="<?= $data['room']->getId(); ?>">
-         <label for="messageContent" class="visually-hidden">Message <?= $data['room']->getName ?></label>
+         <label for="messageContent" class="visually-hidden">Message <?= $data['room']->getName(); ?></label>
          <div class="message-input-wrapper">
-            <input type="text" name="content" id="messageContent" placeholder="Message <?= $data['room']->getName ?>">
+            <input type="text" name="content" id="messageContent" placeholder="Message <?= $data['room']->getName(); ?>">
             <button aria-label="Send message">
                Envoyer
             </button>

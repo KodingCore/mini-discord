@@ -39,13 +39,14 @@ class ChatController extends AbstractController
             $content = $_POST['content'];
             $user_id = $_SESSION['user_id'];
             $room_id = $_POST['room_id'];
+            $category_id = $_POST['category_id'];
             
             $message = new Message($content, $creation_date, $user_id, $room_id);
             
             $this->messageManager->addMessage($message);
             
-            header("Location: /index.php?route=chat");
-            exit();
+            // header("Location: /index.php?route=chat&category_id=$category_id&room_id=$room_id");
+            // exit();
         }
         
     }

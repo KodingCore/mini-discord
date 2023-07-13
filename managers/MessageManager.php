@@ -22,9 +22,13 @@ class MessageManager extends AbstractManager
 
    function addMessage(Message $message): void
    {
-      $query = $this->db->prepare('INSERT INTO messages(content,user_id,room_id) VALUES(:content,:user_id,:room_id)');
+      $query = $this->db->prepare('
+         INSERT INTO messages(content,creation_date,user_id,room_id)
+         VALUES(:content,:creation_date,:user_id,:room_id)
+      ');
       $parameters = [
          'content' => $message->getContent(),
+         'creation_date' => $message->getCreation_date(),
          'user_id' => $message->getUser_id(),
          'room_id' => $message->getRoom_id()
       ];
