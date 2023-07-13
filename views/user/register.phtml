@@ -1,29 +1,31 @@
-<div class="register-container">
-   <form action="index.php?route=user-register" method="POST">
-      <div>
-         <label for="username">Username</label>
-         <input type="text" class="form-control" name="username" id="username">
+<div class="user-form-container">
+   <h1>Create an account</h1>
+   <form action="index.php?route=user-register" method="POST" class="d-flex flex-column">
+      <div class="form-field">
+         <label class="visually-hidden" for="username">Username</label>
+         <input type="text" class="form-control" name="username" id="username" placeholder="Your username">
+      </div>
+      <div class="form-field">
+         <label class="visually-hidden" for="email">Email</label>
+         <input type="email" class="form-control" name="email" id="email" placeholder="Your email">
+      </div>
+      <div class="form-field">
+         <label class="visually-hidden" for="password">Password</label>
+         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+      </div>
+      <div class="form-field">
+         <label class="visually-hidden" for="confirm-password">Confirm password</label>
+         <input type="password" class="form-control" name="confirm-password" placeholder="Repeat your password">
       </div>
       <div>
-         <label for="email">Email</label>
-         <input type="email" class="form-control" name="email" id="email">
-      </div>
-      <div>
-         <label for="password">Password</label>
-         <input type="password" class="form-control" name="password" id="password">
-      </div>
-      <div>
-         <label for="confirm-password">Confirm password</label>
-         <input type="password" class="form-control" name="confirm-password">
-      </div>
-      <div>
-         <button type="submit" class="btn btn-primary">Sign Up</button>
+         <button type="submit" class="btn btn-primary">register</button>
       </div>
    </form>
-   <nav>
-      <ul>
-         <li class="current">Sign up</li>
-         <li><a href="index.php?route=user-login">Log in</a></li>
-      </ul>
-   </nav>
+   <p class="text-center text-muted mt-5 mb-0">
+      Have already an account? 
+      <a href="index.php?route=user-login" class="fw-bold text-body">
+         <u>Login here</u>
+      </a>
+   </p>
 </div>
+

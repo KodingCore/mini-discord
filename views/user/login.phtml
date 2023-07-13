@@ -1,21 +1,22 @@
-<div class="login-container">
+<div class="user-form-container">
+   <h1>Log in</h1>
    <form action="index.php?route=user-login" method="POST">
-      <div>
-         <label for="email">Email</label>
-         <input type="email" class="form-control" name="email" id="email">
+      <div class="form-field">
+         <label class="visually-hidden" for="email">Email</label>
+         <input type="email" class="form-control" name="email" id="email" placeholder="Your email">
       </div>
-      <div>
-         <label for="password">Password</label>
-         <input type="password" class="form-control" name="password" id="password">
+      <div class="form-field">
+         <label class="visually-hidden" for="password">Password</label>
+         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
       </div>
       <div>
          <button type="submit" class="btn btn-primary">Log in</button>
       </div>
    </form>
-   <nav>
-      <ul>
-         <li><a href="index.php?route=user-register">Sign up</a></li>
-         <li class="current">Log in</li>
-      </ul>
-   </nav>
+   <p class="text-center text-muted mt-5 mb-0">
+      Don't have an account?
+      <a href="index.php?route=user-register" class="fw-bold text-body">
+         <u>Register here</u>
+      </a>
+   </p>
 </div>
