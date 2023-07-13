@@ -26,10 +26,21 @@ function handleDarkMode()
    toggleSwitchDarkMode.addEventListener('change', toggleDarkMode);
 }
 
+function handleCategoriesDisplay() {
+   const categories = document.querySelectorAll('#categories li');
+   categories.forEach(li => {
+      li.addEventListener('click', () => {
+         const select = li.querySelector('select');
+         // supposé cliquer sur select mais tjrs en reflexion
+      })
+   })
+}
+
 function main()
 {
    handleDarkMode();
    handleRoomSelect();
+   handleCategoriesDisplay();
 }
 
 window.addEventListener('DOMContentLoaded', () =>

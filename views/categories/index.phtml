@@ -1,9 +1,13 @@
 <nav class="position-absolute top-50 start-50 translate-middle">
-   <ul id="categories">
+   <ul class="categories__list" id="categories">
       <?php foreach ($data['categories'] as $cat) { ?>
-         <li>
-            <h2><?= $cat->getName(); ?></h2>
-            <form action="index.php" method="GET">
+         <li class="position-relative bg-primary">
+            <h2>
+               <span>
+                  <?= $cat->getName(); ?>
+               </span>
+            </h2>
+            <form action="index.php" method="GET"> <!-- class="position-absolute top-50 start-50 translate-middle" -->
                <input type="hidden" name="route" value="categories-selectroom" />
                <input type="hidden" name="category_id" value="<?= $cat->getId(); ?>">
                <select class="form-select" name="room_id" id="room">

@@ -1,8 +1,13 @@
 @use './pages/room.scss';
+@use './pages/categories.scss';
 
 @use './components/_user-forms.scss';
 @use './components/chat.scss';
 @use './components/message.scss';
+
+html {
+   box-sizing: border-box;
+}
 
 li {
    list-style: none;
