@@ -25,7 +25,7 @@ class CategoriesController extends AbstractController
     {
         $room_id = $_GET['room_id'];
         $category_id = $_GET['category_id'];
-        $room = $roomManager->getRoomById($room_id);
+        $room = $this->roomManager->getRoomById($room_id);
         $messages = $this->messageManager->getAllMessagesByRoomId($room_id);
         
         $this->render('chat/index.phtml',["messages" => $messages,"room" => $room]);
