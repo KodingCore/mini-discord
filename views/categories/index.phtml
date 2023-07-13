@@ -1,19 +1,19 @@
-<nav>
+<nav class="position-absolute top-50 start-50 translate-middle">
    <ul>
       <?php foreach ($data['categories'] as $cat) { ?>
          <li>
-            <?= $cat->getName(); ?>
-            <form action="index.php" method="GET">
+            <h2><?= $cat->getName(); ?></h2>
+            <form action="index.php" method="GET" id="roomSelectForm">
                <input type="hidden" name="route" value="categories-selectroom" />
                <input type="hidden" name="category_id" value="<?= $cat->getId(); ?>">
-               <select name="room_id" id="room">
+               <select class="form-select" name="room_id" id="room">
+                  <option value="">-- select a room --</option>
                   <?php foreach ($data['rooms'] as $room) {
                      if ($room->getCategory_id() === $cat->getId()) { ?>
                         <option value="<?= $room->getId(); ?>"><?= $room->getName(); ?></option>
                   <?php }
                   } ?>
                </select>
-               <button type="submit">Submit</button> <!--- probablement hidden -->
             </form>
          </li>
       <?php } ?>

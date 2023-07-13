@@ -18,8 +18,8 @@ class UserController extends AbstractController
             $user = $this->userManager->getUserByEmail($_POST["email"]);
             if (password_verify($_POST["password"], $user->getPassword())) {
                 $_SESSION['user_id'] = $user->getId();
-                $categories = $this->categoryManager->getAllCategories();
-                $this->render('categories/index.phtml', ['categories' => $categories]);
+                header("Location: /index.php?route=categories");
+                exit();
             } else {
                 $allUsers = $this->userManager->getAllUsers();
                 $this->render('user/login.phtml', ["users" => $allUsers]);
@@ -52,7 +52,7 @@ class UserController extends AbstractController
     {
         if (isset($_SESSION['user_id'])) {
             unset($_SESSION['user_id']);
-            header('Location: index.php?route=""');
+            header("Location: /index.php?route=user-login");
             exit();
         }
     }

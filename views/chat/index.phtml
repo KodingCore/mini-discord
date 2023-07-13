@@ -3,18 +3,18 @@ global $db;
 $userManager = new UserManager($db);
 ?>
 
-<div class="room-heading">
-   <h1><?= $data['room']->getName(); ?></h1>
+<div class="room-heading mx-auto">
+   <h1 class="text-center"><?= $data['room']->getName(); ?></h1>
 </div>
-<div class="room-chat">
+<div class="chat-container container">
    <section aria-labelledby="srt-feed">
       <h2 class="visually-hidden" id="srt-feed">Feed</h2>
       <div role="feed">
          <?php foreach ($data['messages'] as $msg) { ?>
-            <article>
-               <header>
+            <article class="message-wrapper d-flex flex-column">
+               <header class="d-flex justify-content-between">
                   <h3><?= $userManager->getUserById($msg->getUser_id())->getUsername(); ?></h3>
-                  <div><?php
+                  <div class="message-creation-date"><?php
                         echo $msg->getCreation_date();
                         ?></div>
                </header>
@@ -27,13 +27,13 @@ $userManager = new UserManager($db);
    </section>
    <section>
       <form action="index.php?route=chat-sendmessage" method="POST">
-         <input type="hidden" name="category_id" value="<?= $data['category']->getId(); ?>">
+         <input type="hidden" name="category_id" value="<?= $data['category_id']; ?>">
          <input type="hidden" name="room_id" value="<?= $data['room']->getId(); ?>">
          <label for="messageContent" class="visually-hidden">Message <?= $data['room']->getName(); ?></label>
          <div class="message-input-wrapper">
             <input type="text" name="content" id="messageContent" placeholder="Message <?= $data['room']->getName(); ?>">
-            <button aria-label="Send message">
-               Envoyer
+            <button type="submit" aria-label="Send message">
+               >
             </button>
          </div>
       </form>

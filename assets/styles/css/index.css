@@ -1,0 +1,84 @@
+.room-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inline-size: 20rem;
+  margin-block: 1rem;
+  border-block-end: 1px solid black;
+  text-transform: uppercase;
+}
+
+.user-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  inline-size: 36rem;
+  padding: 2em;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.user-form-container > h1 {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-block: 0.2em 1em;
+}
+
+.user-form-container .form-field {
+  margin-block-end: 1em;
+}
+
+.user-form-container button[type=submit] {
+  inline-size: 100%;
+  text-transform: uppercase;
+}
+
+.chat-container div[role=feed] {
+  block-size: 70vh;
+  overflow-y: scroll;
+}
+.chat-container .message-input-wrapper {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  inline-size: 100%;
+}
+.chat-container .message-input-wrapper input {
+  padding: 0.3em;
+}
+
+.message-wrapper {
+  font-size: 1rem;
+  padding: 1em;
+  border: 1px solid rgba(200, 200, 200, 0.7);
+  border-radius: 4px;
+}
+.message-wrapper h3 {
+  font-size: 1rem;
+}
+.message-wrapper .message-creation-date {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+li {
+  list-style: none;
+}
+
+.global-header {
+  position: relative;
+  block-size: 0;
+}
+.global-header > * {
+  position: absolute;
+  top: 5px;
+}
+.global-header > *:first-child {
+  left: 5px;
+}
+.global-header > *:last-child {
+  right: 5px;
+}
+
+/*# sourceMappingURL=index.css.map */

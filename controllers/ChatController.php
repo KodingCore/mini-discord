@@ -24,8 +24,9 @@ class ChatController extends AbstractController
         $room_id = (int) $_GET['room_id'];
         $category_id = (int) $_GET['category_id'];
         $room = $this->roomManager->getRoomById($room_id);
+
         $category = $this->categoryManager->getCategoryById($category_id);
-        
+
         $messages = $this->messageManager->getAllMessagesByRoomId($room_id);
         
         $this->render("chat/index.phtml", [

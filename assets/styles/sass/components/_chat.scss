@@ -1,0 +1,16 @@
+.chat-container {
+
+   div[role="feed"] {
+      block-size: 70vh;
+      overflow-y: scroll;
+   }
+   .message-input-wrapper {
+      display: grid;
+      grid-template-columns: 90% 10%;
+      inline-size: 100%;
+
+      input {
+         padding: 0.3em;
+      }
+   }
+}

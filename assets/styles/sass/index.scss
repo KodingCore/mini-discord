@@ -1,0 +1,25 @@
+@use './pages/room.scss';
+
+@use './components/_user-forms.scss';
+@use './components/chat.scss';
+@use './components/message.scss';
+
+li {
+   list-style: none;
+}
+
+.global-header {
+   position: relative;
+   block-size: 0;
+
+   & > * {
+      position: absolute;
+      top: 5px;
+   }
+   & > *:first-child {
+      left: 5px;
+   }
+   & > *:last-child {
+      right: 5px;
+   }
+}
