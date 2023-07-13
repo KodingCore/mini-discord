@@ -16,6 +16,11 @@ class ChatController extends AbstractController
     
     function index() : void
     {
+        if(empty($_SESSION['user_id'])) {
+            unset($_GET['route']);
+            header('Location: /index.php');
+            exit();
+        }
         $room_id = (int) $_GET['room_id'];
         $category_id = (int) $_GET['category_id'];
         $room = $this->roomManager->getRoomById($room_id);

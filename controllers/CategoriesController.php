@@ -16,6 +16,11 @@ class CategoriesController extends AbstractController
 
     public function index()
     {
+        if(empty($_SESSION['user_id'])) {
+            unset($_GET['route']);
+            header('Location: /index.php');
+            exit();
+        }
         $allCategories = $this->categoryManager->getAllCategories();
         $allRooms = $this->roomManager->getAllRooms();
         $this->render('categories/index.phtml', ["categories" => $allCategories, "rooms" => $allRooms]);

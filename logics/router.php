@@ -41,6 +41,10 @@ function checkRoute(string $route) : void
     {
         $userController->account();
     }
+    elseif($route === "user-logout")
+    {
+        $userController->logout();
+    }
     elseif($route === "")
     {
         $homeController->index();
